@@ -11,8 +11,10 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     public function viewTable(){
+        
         $users = User::where('usertype','executive')->get();
-        return view('admin.viewExecutive',compact('users'));    
+        return view('admin.viewExecutive',compact('users'));  
+        // return $categories;  
     }
     public function changeStatus($id){
         $users = User::find($id);
@@ -24,6 +26,8 @@ class AdminController extends Controller
         $id = request('id');
        $users = User::find($id);
         $users->update([
+            'name'=>request('name'),
+            'email'=>request('email'),
             'status'=>request('status')
         ]);
         return redirect()->route('Executive')->with('message','Updated the  status.');
@@ -36,11 +40,11 @@ class AdminController extends Controller
 
     }
     public function viewLead(){
-    
+        $categories =Category::all();
         $leads = Lead::join('categories', 'leads.category_id', '=', 'categories.id')
         ->select('leads.*', 'categories.category')
         ->get();
-    return view('admin.viewAdminSideLead', compact('leads'));
+    return view('admin.viewAdminSideLead', compact('leads','categories'));
     }
 
     public function editLead($id){
@@ -72,6 +76,27 @@ class AdminController extends Controller
 
     
     }
+    public function assign($id){
+        $users = User::find($id);
+        $leads = Lead::all();
+        return view('admin.adminAssignLead',compact('users','leads'));
+    }
+
+    public function filtering_category(Request $request){
+        $filter = $request->input('filter');
+        if($filter=='all'){
+            $leads = Lead::all();
+        }else{
+            $leads = Lead::whereHas('category', function($query) use ($filter) {
+                $query->where('category', $filter);
+            })->get();
+        }
+        
+    
+        $categories = Category::all();
+        return view('admin.adminLeadFilter', compact('leads', 'categories'));
+    }
+    
  
         
       

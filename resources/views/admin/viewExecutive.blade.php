@@ -29,8 +29,9 @@
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->status}}</td>
                                     <td>
-                                    <a class="btn btn-primary btn-lg" href="{{route('editBtn',$user->id)}}" role="button">Status</a>
-                                    <a class="btn btn-primary btn-lg" href="{{route('AdminDelete',$user->id)}}" role="button">Delete</a>
+                                    <a class="btn btn-primary btn-sm" href="{{route('Assigned',$user->id)}}" role="button">Assign Lead</a>
+                                    <a class="btn btn-warning btn-sm" href="{{route('editBtn',$user->id)}}" role="button">Status</a>
+                                    <a class="btn btn-danger btn-sm" href="{{route('AdminDelete',$user->id)}}" role="button">Delete</a>
                              
                                     </td>
                                     @endforeach

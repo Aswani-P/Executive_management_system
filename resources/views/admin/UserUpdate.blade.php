@@ -14,11 +14,11 @@
                         <div class="mb-3">
                             <input type="hidden" class="form-control" id="id" name="id" value="{{$users->id}}">
                             <label for="nameControl" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="nameControl" name="name" value="{{$users->name}}" disabled/>
+                            <input type="text" class="form-control" id="nameControl" name="name" value="{{$users->name}}" />
                         </div>
                         <div class="mb-3">
                             <label for="emailControl" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="emailControl" placeholder="name@example.com" name="email" value="{{$users->email}}"disabled>
+                            <input type="email" class="form-control" id="emailControl" placeholder="name@example.com" name="email" value="{{$users->email}}" />
                         </div>
                         <div class="mb-3">
                             <label for="nameControl" class="form-label">Status</label>

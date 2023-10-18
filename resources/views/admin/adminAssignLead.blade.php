@@ -9,7 +9,36 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                
+                    <form action="" method="post">
+                    <div class="mb-3">
+                        <input type="hidden" class="form-control" id="id" value="{{$users->id}}">
+                        <label for="nameControl" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="nameControl" value="{{$users->name}}" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="emailControl" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="emailControl" value="{{$users->email}}" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="statusControl" class="form-label">Status</label>
+                        <input type="text" class="form-control" id="statusControl" value="{{$users->status}}" disabled>
+
+                    </div>
+                    <div class="mb-3">
+                    <label for="asigncontrol" class="form-label">Assign</label>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Whom do you want to assign </option>
+                        @foreach($leads as $lead)
+                        <option value="{{$lead->id}}">{{$lead->name}}</option>
+                        @endforeach
+                    </select>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-dark">Assign</button>
+                    </div>
+
+
+                    </form>
                 </div>
             </div>
         </div>

@@ -16,9 +16,10 @@
                             <input type="text" class="form-control" id="nameControl" name="name" required />
                         </div>
                         <div class="mb-3">
-                            <label for="contact">Mobile or Email:</label>
+                            <label for="contact">Email</label>
                             <input type="email" id="email" class="form-control" name="email" placeholder="Enter your email address" required><br><br>
-                             <span>OR</span><br>
+                             <span>OR</span><br><br>
+                             <label for="contact">Mobile</label>
                              <input type="tel" id="contact" class="form-control" name="contact" placeholder="Enter your mobile number" pattern="[0-9]{10}" required><br><br>
                             
                         </div>

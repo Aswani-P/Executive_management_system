@@ -18,7 +18,7 @@
             <form action="{{ route('LeadDeleteEx', $ex->id) }}" method="POST">
                 @csrf
                
-                <button type="submit" class="btn btn-danger">Delete</button>
+                <button type="submit" class="btn btn-danger">YES</button>
             </form>
            
             

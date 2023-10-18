@@ -18,9 +18,10 @@
                                 <input type="text" class="form-control" id="nameControl" name="name" value="{{$leads->name}}" required />
                             </div>
                             <div class="mb-3">
-                                <label for="contact">Mobile or Email:</label>
+                                <label for="contact">Email</label>
                                 <input type="email" id="email" class="form-control" name="email" placeholder="Enter your email address" value="{{$leads->email}}" required><br><br>
                                 <span>OR</span><br>
+                                <label for="contact">Mobile</label>
                                 <input type="tel" id="contact" class="form-control" name="contact" value="{{$leads->phone}}" placeholder="Enter your mobile number" pattern="[0-9]{10}" required><br><br>
                                 
                             </div>

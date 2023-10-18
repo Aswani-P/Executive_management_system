@@ -42,6 +42,8 @@ Route::get('viewLeadAdmin',[AdminController::class,'viewLead'])->name('viewLeadB
 Route::get('editLead/{id}',[AdminController::class,'editLead'])->name('editLeads');
 Route::post('updates',[AdminController::class,'updateAdminLead'])->name('adminleadUpdate');
 Route::get('deletedAdminLead/{id}',[AdminController::class,'deletAdminLead'])->name('deletedAdminLead');
+Route::get('Assign/{id}',[AdminController::class,'assign'])->name('Assigned');
+Route::post('/filter',[AdminController::class,'filtering_category']);
 
 
 

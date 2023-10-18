@@ -20,30 +20,35 @@ class Executivecontroller extends Controller
         $email = request('email');
         $phonecode = request('code');
         $remark = request('remark');
-        $category = request('category');
-
-        request()->validate([
-            'name'=>'required',
-            'code'=>'required',
-            'contact'=>'required',
-            'email'=>'required',
-            'remark'=>'required',
-            'category_name'=>'required'
+        $category_name = request('category');
+    
+        $request->validate([
+            'name' => 'required',
+            'code' => 'required',
+            'contact' => 'required',
+            'email' => 'required',
+            'remark' => 'required',
+            'category' => 'required'
         ]);
-        $category = Category::findOrFail(['category_id']);
-        $categoryName = $category->category;
-
+    
+        $category = Category::findOrFail($category_name);
+        $categoryName = $category->category; // Assuming the 'category' field exists in the 'Category' model.
+    
         Lead::create([
-            'name'=>$name,
-            'email'=>$email,
-            'phoneCode'=>$phonecode,
-            'phone'=>$contact,
-            'remark'=>$remark,
-            'category_name' => $categoryName,
-            'user_id'=>$user
+            'name' => $name,
+            'email' => $email,
+            'phone' => $contact,
+            'remark' => $remark,
+            'category' => $categoryName,
+            'user_id' => $user,
+            'category_id'=>$category->id,
+            'phoneCode'=>$phonecode
+           
         ]);
-        return redirect()->route('home')->with('message','lead added successfully.');
+    
+        return redirect()->route('home')->with('message', 'Lead added successfully.');
     }
+    
     
     public function category(){
         $categories = Category::all();
@@ -65,6 +70,7 @@ class Executivecontroller extends Controller
         $categories=Category::all();
         $leads = Lead::find($id);
         return view('executive.editLeadExcutive',compact('leads','categories'));
+        // return $leads;
     }
 
 
