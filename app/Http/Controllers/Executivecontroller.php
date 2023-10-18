@@ -21,15 +21,19 @@ class Executivecontroller extends Controller
         $phonecode = request('code');
         $remark = request('remark');
         $category_name = request('category');
+
+        $customMessages = [
+            'email.unique' => 'The email has already been taken. Please use a different email.',
+        ];
     
         $request->validate([
             'name' => 'required',
             'code' => 'required',
             'contact' => 'required',
-            'email' => 'required',
+            'email' => 'required|email|unique:leads',
             'remark' => 'required',
             'category' => 'required'
-        ]);
+        ], $customMessages);
     
         $category = Category::findOrFail($category_name);
         $categoryName = $category->category; // Assuming the 'category' field exists in the 'Category' model.
@@ -90,7 +94,7 @@ class Executivecontroller extends Controller
         return redirect()->route('viewLeads')->with('message','Lead updated successfully');
     }
     public function ExecutivedeleteLead($id){
-       
+            // $id=request('id');
             $leads=Lead::find($id);
             $leads->delete();
             return redirect()->route('viewLeads')->with('message',' deleted the lead');

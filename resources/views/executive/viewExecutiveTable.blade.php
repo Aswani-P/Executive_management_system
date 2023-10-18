@@ -39,17 +39,16 @@
                                     <td>{{$ex->category->category}}</td>
                                     <td>
                                     <a class="btn btn-warning" href="{{route('exeEdit',$ex->id)}}" role="button">Edit</a>
-                                    <a type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        Delete
-                                    </a>
+                                    <button type="button" class="btn btn-danger bg-red-700" onclick="confirmAndDelete({{ $ex->id }})">Delete</button>
 
 
     
                                     </td>
                                 </tr>
+                                <!-- @include('modal.DeleteModal',['ex' => $ex]) -->
+
                                 @endforeach
 
-                                @include('modal.DeleteModal')
                             </tbody>
                         </table>
                     </div>
@@ -73,6 +72,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+    <script>
+        
+        function confirmAndDelete(leadId) {
+        if (confirm('Are you sure ?  Do you want to delete ?')) {
+            window.location.href = "{{ route('LeadDeleteEx', ':leadId') }}".replace(':leadId', leadId);
+        }
+    }
+</script>
     
 </body>
 </html>

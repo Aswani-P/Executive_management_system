@@ -33,8 +33,9 @@ class AdminController extends Controller
         return redirect()->route('Executive')->with('message','Updated the  status.');
     }
 
-    public function delete($id){
+    public function AdminUserdeletes($id){
         $users=User::find($id);
+        // return $users;
         $users->delete();
         return redirect()->route('Executive')->with('message','admin deleted the executer');
 
@@ -77,25 +78,62 @@ class AdminController extends Controller
     
     }
     public function assign($id){
-        $users = User::find($id);
-        $leads = Lead::all();
-        return view('admin.adminAssignLead',compact('users','leads'));
+
+        $leads = Lead::where('leads.id',$id)->leftJoin('users', 'users.id', '=', 'leads.user_id')
+        ->select('leads.*', 'users.name as user_name')
+        ->first();
+
+
+        // $users = Auth::id();
+        // $id = request('id');
+        // $leads=Lead::find($id);
+        $leadsname = Lead::leftJoin('users', 'users.id', '=', 'leads.user_id')
+        ->select('leads.*', 'users.name as user_name')
+        ->get();
+
+       
+        return view('admin.adminAssignLead',compact('leads','leadsname'));
+    }
+
+
+    public function updateAssign(Request $request){
+
+        $id = request('id');
+        $leads= Lead::find($id);
+        $leads->update([
+            'user_id'=>request('leads')
+        ]);
+        return redirect()->route('viewLeadByAdmin')->with('message','Lead assigned successfully');
+
+
+    }
+
+    public function StoreAssign(Request $request){
+        $id = request('id');
     }
 
     public function filtering_category(Request $request){
-        $filter = $request->input('filter');
+        $filter = $request->post('filter');
         if($filter=='all'){
-            $leads = Lead::all();
+            $leads = Lead::join('categories', 'leads.category_id', '=', 'categories.id')
+            ->select('leads.*', 'categories.category')
+            ->get();
         }else{
-            $leads = Lead::whereHas('category', function($query) use ($filter) {
-                $query->where('category', $filter);
-            })->get();
+            // $leads = Lead::whereHas('category', function($query) use ($filter) {
+            //     $query->where('category', $filter);
+            // })->get();
+
+            $leads = Lead::where('leads.category_id',$filter)->join('categories', 'leads.category_id', '=', 'categories.id')
+            ->select('leads.*', 'categories.category')
+            ->get();
         }
         
     
         $categories = Category::all();
         return view('admin.adminLeadFilter', compact('leads', 'categories'));
     }
+
+
     
  
         

@@ -11,6 +11,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <a class="btn btn-outline-success btn-lg" href="{{route('leadForm')}}" role="button">Create a lead</a>
                     <a class="btn btn-outline-success btn-lg" href="{{route('viewLeads')}}" role="button">View Lead</a>
+                    <!-- <a class="btn btn-outline-success btn-lg" href="" role="button">View Assigned Lead</a> -->
                 </div>
             </div>
         </div>

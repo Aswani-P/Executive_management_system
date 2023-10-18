@@ -25,7 +25,8 @@
             <td>{{$lead->remark}}</td>
             <td>{{$lead->category}}</td>
             <td>
-                <a class="btn btn-info" href="{{route('editLeads',$lead->id)}}" role="button">edit</a>
+            <a class="btn btn-primary btn-sm" href="{{route('Assigned',$lead->id)}}" role="button">Assign Executive</a>
+                <!-- <a class="btn btn-info" href="{{route('editLeads',$lead->id)}}" role="button">edit</a> -->
                 <a class="btn btn-danger" href="{{route('deletedAdminLead',$lead->id)}}" role="button">Delete</a>
             
             </td>
