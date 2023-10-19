@@ -26,8 +26,8 @@ class AdminController extends Controller
         $id = request('id');
        $users = User::find($id);
         $users->update([
-            'name'=>request('name'),
-            'email'=>request('email'),
+            // 'name'=>request('name'),
+            // 'email'=>request('email'),
             'status'=>request('status')
         ]);
         return redirect()->route('Executive')->with('message','Updated the  status.');
@@ -45,7 +45,9 @@ class AdminController extends Controller
         $leads = Lead::join('categories', 'leads.category_id', '=', 'categories.id')
         ->select('leads.*', 'categories.category')
         ->get();
-    return view('admin.viewAdminSideLead', compact('leads','categories'));
+        $users = User::all();
+        // $users = Lead::join('users','leads.user_id','=','users.id')->select('leads.*','users.name as user_name')->get();
+    return view('admin.viewAdminSideLead', compact('leads','categories','users'));
     }
 
     public function editLead($id){
@@ -114,11 +116,13 @@ class AdminController extends Controller
 
     public function filtering_category(Request $request){
         $filter = $request->post('filter');
-        if($filter=='all'){
+        if($filter=='all')
+        {
             $leads = Lead::join('categories', 'leads.category_id', '=', 'categories.id')
             ->select('leads.*', 'categories.category')
             ->get();
-        }else{
+        }
+        else{
             // $leads = Lead::whereHas('category', function($query) use ($filter) {
             //     $query->where('category', $filter);
             // })->get();
@@ -128,9 +132,9 @@ class AdminController extends Controller
             ->get();
         }
         
-    
+        $users = User::all();
         $categories = Category::all();
-        return view('admin.adminLeadFilter', compact('leads', 'categories'));
+        return view('admin.adminLeadFilter', compact('leads', 'categories','users'));
     }
 
 

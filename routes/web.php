@@ -48,6 +48,9 @@ Route::post('/filter',[AdminController::class,'filtering_category']);
 Route::post('storeAssign',[AssignController::class,'storeAssignValues'])->name('storeAssign');
 Route::post('updateAsign',[AdminController::class,'updateAssign'])->name('updateAssign');
 
+// Route::get('/leads', [AdminController::class, 'filtering_category'])->name('filterLeads');
+
+
 
 
 

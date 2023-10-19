@@ -19,6 +19,14 @@
                         <option value="{{$category->id}}">{{$category->category}}</option>
                         @endforeach
                     </select>
+                    <select name="executive"  id="executive" class="form-control-sm" aria-label="Default select example">
+                    <option value="all">Choose executive</option>
+                        @foreach($users as $user)
+                        @if($user->usertype == 'executive')
+                        <option value="{{$user->id}}">{{$user->name}}</option>
+                        @endif
+                        @endforeach
+                    </select>
                   
                 </div>
                 <div class="conatiner selector">
@@ -52,10 +60,7 @@
                         data:'filter='+filter+'&_token={{csrf_token()}}',
                         success:function(response){
                         $('.selector').html(response);
-                        }
-                        
-                    
-                        
+                        }   
                     });
                 });
             });

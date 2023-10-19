@@ -45,7 +45,7 @@
     
                                     </td>
                                 </tr>
-                                <!-- @include('modal.DeleteModal',['ex' => $ex]) -->
+                            
 
                                 @endforeach
 

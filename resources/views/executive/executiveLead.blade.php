@@ -27,17 +27,18 @@
                         </div>
                         <div class="mb-3">
                             <label for="contact">Email</label>
-                            <input type="email" id="email" class="form-control" name="email" placeholder="Enter your email address" required><br><br>
-                             <span>OR</span><br><br>
-                             <label for="contact">Mobile</label>
-                             <input type="tel" id="contact" class="form-control" name="contact" placeholder="Enter your mobile number" pattern="[0-9]{10}" required><br><br>
-                            
-                        </div>
-                        
+                            <input type="email" id="email" class="form-control" name="email" placeholder="Enter your email address" required>
                         <div class="mb-3">
                             <label for="phoneCode" class="form-label">Phone code</label>
                             <input type="text" class="form-control" id="phoneCode" name="code" required />
                         </div>
+                        <div class="mb-3">
+                             <label for="contact">Mobile</label>
+                             <input type="tel" id="contact" class="form-control" name="contact" placeholder="Enter your mobile number" pattern="[0-9]{10}" required>
+                            
+                        </div>
+                        
+                        
                         <div class="mb-3">
                             <label for="remarkControl" class="form-label">Remarks</label>
                             <textarea class="form-control" id="remarkControl" name="remark" rows="3"></textarea>
